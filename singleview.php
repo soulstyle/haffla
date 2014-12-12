@@ -18,7 +18,7 @@ include 'includes/template.php';
 			</div>
 		</div>
 		<div class="row">
-			<div class="colxs-12">
+			<div class="col-xs-12">
 				<table class="table demo" data-filter="#filter" data-filter-text-only="true">
 					<thead>
 						<tr>
