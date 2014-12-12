@@ -1,24 +1,24 @@
 <?php
 /**
- * Inloggningsdetaljer för databasen
+ * Inloggningsdetaljer fÃ¶r databasen
  */
 
-//Använd lokal databas-config om den finns
+//AnvÃ¤nd lokal databas-config om den finns
 if ( file_exists( dirname( __FILE__ ) . '/phpsec-conf-local.php' ) ) {
 	include( dirname( __FILE__ ) . '/phpsec-conf-local.php' );
 } else {
-	define("HOST", "mysql14.citynetwork.se");     				// IP/Hostname till databasen som du vill ansluta till
-	define("USER", "102298-al56349");    					// Användarnamn i databasen 
-	define("PASSWORD", "YoLo8519");   	 	// Lösenord till databasen
-	define("DATABASE", "102298-haffla");    			// Databasens namn
+	define("HOST", "hostnamn");     				// IP/Hostname till databasen som du vill ansluta till
+	define("USER", "username");    					// AnvÃ¤ndarnamn i databasen 
+	define("PASSWORD", "password");   	 	// LÃ¶senord till databasen
+	define("DATABASE", "database");    			// Databasens namn
 
-	define("HOST2", "mysql07.citynetwork.se");
-	define("USER2", "102298-ko50393");
-	define("PASSWORD2", "haffla13dev");
-	define("DATABASE2", "102298-hafflalists");
+	define("HOST2", "hostnamn");
+	define("USER2", "username");
+	define("PASSWORD2", "password");
+	define("DATABASE2", "database");
 }
  
 define("CAN_REGISTER", "any");					// Vem som kan registrera
-define("DEFAULT_ROLE", "member");				// Standardroll för nyregistrerade medlemmar
+define("DEFAULT_ROLE", "member");				// Standardroll fÃ¶r nyregistrerade medlemmar
  
-define("SECURE", FALSE);    					// För vidare utveckling med https
+define("SECURE", FALSE);    					// FÃ¶r vidare utveckling med https
