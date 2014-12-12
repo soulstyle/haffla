@@ -19,7 +19,7 @@ include 'includes/template.php';
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
-				<table class="table demo" data-filter="#filter" data-filter-text-only="true">
+				<table class="table table-striped" data-filter="#filter" data-filter-text-only="true">
 					<thead>
 						<tr>
 							<th data-type="numeric" data-sort-initial="true">

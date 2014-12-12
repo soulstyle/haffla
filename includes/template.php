@@ -27,13 +27,18 @@ function haffla_header($title = 'Haffla - Guestlist Management Tool') {
 }
 
 function haffla_footer() {
+	$home_link = 'http://' . $_SERVER['SERVER_NAME'];
+	// Login check funkar ej... även om functions.php är includerad?
+	// if (login_check($mysqli) == true) {
+	// 	$home_link = trailingslashit( $home_link ) . 'dashboard.php';
+	// }
 	?>
 	<!-- Footer -->
 	<footer id="footer">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12 text-center">
-					<span class="copyright">&copy; <a href="/">Haffla</a> &nbsp;&bull;&nbsp; <a href="newlist.php">Create new list</a> &nbsp;&bull;&nbsp; <!--<a href="newlist.php">View list</a> &nbsp;&bull;&nbsp; --><a href="includes/logout.php">logout</a></span>
+					<span class="copyright">&copy; <a href="<?php echo $home_link; ?>">Haffla</a> &nbsp;&bull;&nbsp; <a href="newlist.php">Create new list</a> &nbsp;&bull;&nbsp; <!--<a href="newlist.php">View list</a> &nbsp;&bull;&nbsp; --><a href="includes/logout.php">logout</a></span>
 				</div>
 			</div>
 		</div>
