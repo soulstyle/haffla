@@ -12,31 +12,45 @@ if (login_check($mysqli) == true) {
 	$logged = 'utloggad';
 }
 ?>
-<?php haffla_header('Guestlist Management Tool'); ?>
-<body class="loading">
-	<div id="wrapper" class="container">
-		<!-- Header -->
-		<header id="header">
-			<h1>haffla.com</h1>
-		</header>
-		<div id="content">
-			<center>
-				<!-- <p>Guestlist Management &nbsp;&bull;&nbsp; </p> -->
-				<p><u>Under Development</u></p>
-				<?php
-				if (isset($_GET['error'])) {
-					echo '<p class="error">Error Logging In!</p>';
-				}
-				?> 
-				<form action="includes/loginprocess.php" method="post" name="login_form">                      
-					<p>Email:<br> <input type="text" name="email" /></p>
-					<p>Password:<br> <input type="password"  name="password" id="password"/></p>
-					<input type="button" class="btn btn-primary" value="Login" onclick="formhash(this.form, this.form.password);" /> 
+<html lang="en">
+	<?php haffla_header('Guestlist Management Tool'); ?>
+	<body>
+		<div id="wrapper" class="container">
+			<!-- Header -->
+			<header id="header">
+				<h1>haffla.com</h1>
+			</header>
+			<div id="content">
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<p><u>Under Development</u></p>
+						<?php
+						if (isset($_GET['error'])) {
+							echo '<p class="error">Error Logging In!</p>';
+						}
+						?>
+					</div>
+				</div>
+				<form class="col-sm-4 col-sm-offset-4" action="includes/loginprocess.php" method="post" name="login_form">
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" class="form-control" name="email" placeholder="Enter email" /></p>
+					</div>
+					<div class="form-group">
+						<label for ="password">Password:</label>
+						<input type="password" class="form-control" name="password" id="password"/></p>
+					</div>
+					<div class="form-group text-center">
+						<button type="submit" class="btn btn-primary" onclick="formhash(this.form, this.form.password);">Login</button>
+					</div>
 				</form>
-				<p>Dont have a login? <a href="registrera.php">register</a>.</p>
-			</center>
+				<div class="row">
+					<div class="col-xs-12 text-center">
+						<p>Dont have a login? <a href="registrera.php">register</a>.</p>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-	<?php haffla_footer(); ?>
-</body>
+		<?php haffla_footer(); ?>
+	</body>
 </html>

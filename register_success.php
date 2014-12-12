@@ -6,7 +6,8 @@ include_once 'includes/registrera.inc.php';
 include_once 'includes/functions.php';
 include 'includes/template.php';
 ?>
-<?php haffla_header('Register'); ?>
+<html lang="en">
+	<?php haffla_header('Register'); ?>
 	<body class="loading">
 		<div id="wrapper" class="container">
 			<!-- Header -->
@@ -14,9 +15,11 @@ include 'includes/template.php';
 				<h1>Registration Successful!</h1>
 			</header>
 			<div id="content">
-				<center>
-					<p>back to <a href="index.php">login</a>.</p>
-				</center>
+				<div class="row">
+                    <div class="col-sm-4 col-sm-offset-4 text-center">
+						<p>back to <a href="index.php">login</a>.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<?php haffla_footer(); ?>
