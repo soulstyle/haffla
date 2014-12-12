@@ -20,12 +20,13 @@ sec_session_start();
 						<div class="col-sm-6 text-left">
 							<?php 
 							$uname = htmlentities($_SESSION['username']);
-							$umail = htmlentities($_SESSION['email']);
+							//$umail = htmlentities($_SESSION['email']);
+							$umail = 'demo@haffla.com'; // Tillfällig e-post tills den riktiga finns med i sessionen
 							
 							echo '<p>';
-							echo '<img src="http://dummyimage.com/150/ccc/fff&text=Avatar"> <br>';						
-							echo ' Name: ' . $uname . ' <br>';
-							echo ' Email: ' . $umail . ' ';
+							echo '<img class="img-circle img-thumbnail" src="/css/images/sakil.jpg"><br>';						
+							echo 'Name: ' . $uname . '<br>';
+							echo 'Email: ' . $umail . '';
 							echo '</p>'; ?>
 						</div>
 						<div class="col-sm-6 text-right">
@@ -34,27 +35,52 @@ sec_session_start();
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<table class="table footable">
+							<table class="table table-striped table-hover footable toggle-circle-filled sub-table">
 								<thead>
 									<tr>
 										<th>Listname</th>
 										<th data-type="numeric">Unique Views</th>
-										<th data-type="numeric">Forms</th>
+										<th data-toggle="true" data-type="numeric">Forms</th>
 										<th data-type="numeric" data-sort-initial="descending">Creation Date</th>
+										<th data-hide="all" data-sort-ignore="true">Forms</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td> <a href="singleview.php">$listuid1</a></td>
+										<td><a href="singleview.php">$listuid1</a></td>
 										<td>143</td>
-										<td><a href ="viewform1.php">1</a></td>
+										<td>1</td>
 										<td data-value="1397939840">19 Apr 2014</td>
-									</tr></a>
+										<td>
+										</td>
+									</tr>
 									<tr>
 										<td><a href="singleview.php">$listuid2</a></td>
 										<td>59</td>
 										<td><a href ="viewform1.php">1</a></td>
 										<td data-value="1411850240">27 Sept 2014</td>
+										<td>
+											<table class="sub-table-inner table">
+												<thead>
+													<tr>
+														<th>Form Name</th>
+														<th>Signups</th>
+														<th>Views</th>
+														<th>Active</th>
+														<th>Created</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><a href ="viewform1.php">VIP Guest</a> <i class="fa fa-external-link"></i></td>
+														<td>24</td>
+														<td>56</td>
+														<td><input type="checkbox" checked="checked" name="active" value="1"></td>
+														<td>27 Sept 2014</td>
+													</tr>
+												</tbody>
+											</table>
+										</td>
 									</tr>
 								</tbody>
 							</table>
