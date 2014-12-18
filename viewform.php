@@ -51,7 +51,7 @@ $sdateunix = $datum[0];
 							//Skriv ut vid lyckad ny inlaggd film
 							echo "<h1>You were successfully added to the guestlist! </h1><br />";
 							echo "<br><br>";
-							echo "Sign up more guests? Click <a href='viewform1.php?listid=$listid'>here</a>";
+							echo "Sign up more guests? Click <a href='viewform.php?listid=$listid'>here</a>";
 							//echo "<a href='viewlist.php'>Back To guestlist</a>";
 						}
 						if(!isset($_POST['submitted'])) {

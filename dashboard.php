@@ -86,18 +86,21 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 										// echo '<th>Created</th>';
 										// echo '</tr></thead>';
 										echo '<tbody>';
-
+										// Hämta forms från databasen
 										$forms_result = $mysqli2->query("SELECT * FROM `forms` WHERE listid='" . nl2br($list['id']) . "'") or trigger_error(mysql_error()); 
 										while( $form = mysqli_fetch_array($forms_result) ) {
 											foreach($form AS $key => $value) { // skapar arrays av resultatet
 												$form[$key] = stripslashes($value);
 											}
-											// Hämta forms från databasen - för närvarande statisk demo
+											$active = '';
+											if ($form['active'] == 1) {
+												$active = 'checked="checked"';
+											}
 											echo '<tr>';
-											echo '<td><a target="_blank" href="viewform1.php?listid='. nl2br( $form['listid']) . '">' . $form['formname'] . '</a> <i class="fa fa-external-link"></i></td>';
+											echo '<td><a target="_blank" href="viewform.php?listid='. nl2br( $form['listid']) . '">' . $form['formname'] . '</a> <i class="fa fa-external-link"></i></td>';
 											echo '<td>'. nl2br( $form['signups']) . '</td>';
 											echo '<td>'. nl2br( $form['uviews']) . '</td>';
-											echo '<td><input type="checkbox" checked="checked" name="active" value="1"></td>';
+											echo '<td><input type="checkbox" ' . $active . ' name="active" value="1"></td>';
 											echo '<td data-value="'. nl2br( $form['cdateunix']) . '">' . $form['creationdate'] . '</td>';
 											echo '</tr>';
 										}
