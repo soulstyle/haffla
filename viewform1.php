@@ -4,35 +4,43 @@ include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 include 'includes/template.php';
  
-sec_session_start(); ?>
+sec_session_start();
+
+/*
+$mysqli->query("SELECT * FROM `forms` WHERE uid='$_SESSION['id']'") or trigger_error(mysqli_connect_errno());
+while($row = mysqli_fetch_array($result)){ // skapar arrays av resultatet
+foreach($row AS $key => $value) { $row[$key] = stripslashes($value); } 	
+
+
+" . nl2br( $row['fimage']) . "   	form image
+" . nl2br( $row['fdesc']) . "		form description 
+*/	
+$listid = $_GET["listid"];
+$list_result = $mysqli2->query("SELECT * FROM `lists` WHERE id='" . $listid . "'") or trigger_error(mysql_error()); 
+$list = '';
+while( $row = mysqli_fetch_array($list_result) ) {
+	foreach($row AS $key => $value) { // skapar arrays av resultatet
+		$list[$key] = stripslashes($value);
+	}
+}
+$fromform = '1';
+$datum = getdate(date("U"));
+$signupdate = "$datum[mday]/$datum[mon] - $datum[year] - $datum[hours]:$datum[minutes]";
+$sdateunix = $datum[0];
+?>
 <html lang="en">
 	<?php haffla_header(); ?>
 	<body class="">
 		<div id="wrapper" class="container">
 			<!-- Header -->
 			<header id="header">
-			 	<h1>Testlista</h1>
+			 	<h1><?php echo $list['listname']; ?></h1>
 			</header>
 			<div id="content">
 				<div class="row">
 					<div class="col-sm-4 col-sm-offset-4 text-center">
     					<!-- <p>Welcome back <?php echo htmlentities($_SESSION['username']); ?>!</p>  -->
 						<?php
-						/*
-							$mysqli->query("SELECT * FROM `forms` WHERE uid='$_SESSION['id']'") or trigger_error(mysqli_connect_errno());
-							while($row = mysqli_fetch_array($result)){ // skapar arrays av resultatet
-							foreach($row AS $key => $value) { $row[$key] = stripslashes($value); } 	
-							
-							
-							" . nl2br( $row['fimage']) . "   	form image
-							" . nl2br( $row['fdesc']) . "		form description 
-						*/	
-						$listid = $_GET["listid"];
-						$fromform = '1';
-						$datum = getdate(date("U"));
-						$signupdate = "$datum[mday]/$datum[mon] - $datum[year] - $datum[hours]:$datum[minutes]";
-						$sdateunix = $datum[0];
-
 						if (isset($_POST['submitted'])) {
 							foreach($_POST AS $key => $value) {
 								$_POST[$key] = $mysqli2->real_escape_string($value);

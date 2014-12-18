@@ -64,17 +64,17 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 								<tbody>
 									<?php
 									// Hämtar användarens listor från 'lists' table i databasen
-									$result = $mysqli2->query("SELECT * FROM `lists` WHERE owneruid='" . $uid . "'") or trigger_error(mysql_error()); 
-									while( $row = mysqli_fetch_array($result) ) {
-										foreach($row AS $key => $value) { // skapar arrays av resultatet
-											$row[$key] = stripslashes($value);
+									$list_result = $mysqli2->query("SELECT * FROM `lists` WHERE owneruid='" . $uid . "'") or trigger_error(mysql_error()); 
+									while( $list = mysqli_fetch_array($list_result) ) {
+										foreach($list AS $key => $value) { // skapar arrays av resultatet
+											$list[$key] = stripslashes($value);
 										}
 										echo '<tr>';
-										echo '<td><a href="svsql.php?listid='. nl2br( $row['id']) . '">'. nl2br( $row['listname']) . '</a></td>';
-										echo '<td>'. nl2br( $row['signups']) . '</td>';
-										echo '<td>'. nl2br( $row['uviews']) . '</td>';
-										echo '<td>'. nl2br( $row['forms']) . ' (View)</td>';
-										echo '<td data-value="'. nl2br( $row['cdateunix']) . '">'. nl2br( $row['creationdate']) . '</td>';
+										echo '<td><a href="svsql.php?listid='. nl2br($list['id']) . '">'. nl2br( $list['listname']) . '</a></td>';
+										echo '<td>'. nl2br( $list['signups']) . '</td>';
+										echo '<td>'. nl2br( $list['uviews']) . '</td>';
+										echo '<td>'. nl2br( $list['forms']) . ' (View)</td>';
+										echo '<td data-value="'. nl2br( $list['cdateunix']) . '">'. nl2br( $list['creationdate']) . '</td>';
 										echo '<td>';
 										echo '<table class="sub-table-inner table">';
 										// List forms table header - behövs inte just nu
@@ -87,18 +87,23 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 										// echo '</tr></thead>';
 										echo '<tbody>';
 
-										// Hämta forms från databasen - för närvarande statisk demo
-										echo '<tr>';
-										echo '<td><a target="_blank" href="viewform1.php?listid='. nl2br( $row['id']) . '">VIP Guest</a> <i class="fa fa-external-link"></i></td>';
-										echo '<td>24</td>';
-										echo '<td>56</td>';
-										echo '<td><input type="checkbox" checked="checked" name="active" value="1"></td>';
-										echo '<td>27 Sept 2014</td>';
-										echo '</tr>';
-
+										$forms_result = $mysqli2->query("SELECT * FROM `forms` WHERE listid='" . nl2br($list['id']) . "'") or trigger_error(mysql_error()); 
+										while( $form = mysqli_fetch_array($forms_result) ) {
+											foreach($form AS $key => $value) { // skapar arrays av resultatet
+												$form[$key] = stripslashes($value);
+											}
+											// Hämta forms från databasen - för närvarande statisk demo
+											echo '<tr>';
+											echo '<td><a target="_blank" href="viewform1.php?listid='. nl2br( $form['listid']) . '">' . $form['formname'] . '</a> <i class="fa fa-external-link"></i></td>';
+											echo '<td>'. nl2br( $form['signups']) . '</td>';
+											echo '<td>'. nl2br( $form['uviews']) . '</td>';
+											echo '<td><input type="checkbox" checked="checked" name="active" value="1"></td>';
+											echo '<td data-value="'. nl2br( $form['cdateunix']) . '">' . $form['creationdate'] . '</td>';
+											echo '</tr>';
+										}
 										// Create new Form button - ingen funktion ännu.
 										echo '<tr><td>';
-										echo '<a class="" href="#"><i class="fa fa-plus-circle"></i> Add Form</a>';
+										echo '<a class="" href="newform.php?listid=' . nl2br($list['id']) . '"><i class="fa fa-plus-circle"></i> Add Form</a>';
 										echo '</td></tr>';
 										echo '</tbody>';
 										echo '</table>';
