@@ -88,6 +88,10 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 										echo '<tbody>';
 										// Hämta forms från databasen
 										$forms_result = $mysqli2->query("SELECT * FROM `forms` WHERE listid='" . nl2br($list['id']) . "'") or trigger_error(mysql_error()); 
+										
+										// Load Signups from database
+										//$guest_result = $mysqli2->query("SELECT `fromform`, COUNT(*) FROM `guests` WHERE listid='" . nl2br($list['id']) . "' GROUP BY `fromform`") or trigger_error(mysql_error());
+										//var_dump($guest_result);
 										while( $form = mysqli_fetch_array($forms_result) ) {
 											foreach($form AS $key => $value) { // skapar arrays av resultatet
 												$form[$key] = stripslashes($value);
@@ -97,7 +101,7 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 												$active = 'checked="checked"';
 											}
 											echo '<tr>';
-											echo '<td><a target="_blank" href="viewform.php?listid='. nl2br( $form['listid']) . '">' . $form['formname'] . '</a> <i class="fa fa-external-link"></i></td>';
+											echo '<td><a target="_blank" href="viewform.php?listid='. nl2br( $form['listid']) . '&formid=' . $form['id'] . '">' . $form['formname'] . '</a> <i class="fa fa-external-link"></i></td>';
 											echo '<td>'. nl2br( $form['signups']) . '</td>';
 											echo '<td>'. nl2br( $form['uviews']) . '</td>';
 											echo '<td><input type="checkbox" ' . $active . ' name="active" value="1"></td>';

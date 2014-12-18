@@ -16,6 +16,7 @@ foreach($row AS $key => $value) { $row[$key] = stripslashes($value); }
 " . nl2br( $row['fdesc']) . "		form description 
 */	
 $listid = $_GET["listid"];
+$formid = $_GET["formid"];
 $list_result = $mysqli2->query("SELECT * FROM `lists` WHERE id='" . $listid . "'") or trigger_error(mysql_error()); 
 $list = '';
 while( $row = mysqli_fetch_array($list_result) ) {
@@ -23,7 +24,6 @@ while( $row = mysqli_fetch_array($list_result) ) {
 		$list[$key] = stripslashes($value);
 	}
 }
-$fromform = '1';
 $datum = getdate(date("U"));
 $signupdate = "$datum[mday]/$datum[mon] - $datum[year] - $datum[hours]:$datum[minutes]";
 $sdateunix = $datum[0];
@@ -45,13 +45,13 @@ $sdateunix = $datum[0];
 							foreach($_POST AS $key => $value) {
 								$_POST[$key] = $mysqli2->real_escape_string($value);
 							} 
-							$sql = "INSERT INTO `guests` ( `name` ,  `lastname` ,  `age` ,  `signupdate` , `sdateunix`  , `fromform` , `listid` ) VALUES (  '{$_POST['name']}' ,  '{$_POST['lastname']}' ,  '{$_POST['age']}' ,  '" . $signupdate . "' ,  '" . $sdateunix . "' ,  '" . $fromform . "' ,  '" . $listid . "'   ) ";
+							$sql = "INSERT INTO `guests` ( `name` ,  `lastname` ,  `age` ,  `signupdate` , `sdateunix`  , `fromform` , `listid` ) VALUES (  '{$_POST['name']}' ,  '{$_POST['lastname']}' ,  '{$_POST['age']}' ,  '" . $signupdate . "' ,  '" . $sdateunix . "' ,  '" . $formid . "' ,  '" . $listid . "'   ) ";
 							$mysqli2->query($sql) or die(mysqli_connect_errno()); 
 
 							//Skriv ut vid lyckad ny inlaggd film
 							echo "<h1>You were successfully added to the guestlist! </h1><br />";
 							echo "<br><br>";
-							echo "Sign up more guests? Click <a href='viewform.php?listid=$listid'>here</a>";
+							echo "Sign up more guests? Click <a href='viewform.php?listid=$listid&formid=$formid'>here</a>";
 							//echo "<a href='viewlist.php'>Back To guestlist</a>";
 						}
 						if(!isset($_POST['submitted'])) {
