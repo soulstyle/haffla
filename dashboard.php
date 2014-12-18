@@ -54,9 +54,9 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 								<thead>
 									<tr>
 										<th>List Name</th>
-										<th data-type="numeric">Unique Views</th>
 										<th data-type="numeric">Signups</th>
-										<th data-toggle="true" data-type="numeric">Forms</th>
+										<th data-type="numeric">Unique Views</th>
+										<th data-toggle="true" data-type="numeric">Forms <small>(Active)</small></th>
 										<th data-type="numeric" data-sort-initial="descending">Created</th>
 										<th data-hide="all" data-sort-ignore="true">Forms</th>
 									</tr>
@@ -71,8 +71,8 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 										}
 										echo '<tr>';
 										echo '<td><a href="svsql.php?listid='. nl2br($list['id']) . '">'. nl2br( $list['listname']) . '</a></td>';
-										echo '<td>'. nl2br( $list['signups']) . '</td>';
-										echo '<td>'. nl2br( $list['uviews']) . '</td>';
+										echo '<td>'. nl2br( $list['signups']) . '-</td>';
+										echo '<td>'. nl2br( $list['uviews']) . '-</td>';
 										echo '<td>'. nl2br( $list['forms']) . ' (View)</td>';
 										echo '<td data-value="'. nl2br( $list['cdateunix']) . '">'. nl2br( $list['creationdate']) . '</td>';
 										echo '<td>';
@@ -102,14 +102,14 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 											}
 											echo '<tr>';
 											echo '<td><a target="_blank" href="viewform.php?listid='. nl2br( $form['listid']) . '&formid=' . $form['id'] . '">' . $form['formname'] . '</a> <i class="fa fa-external-link"></i></td>';
-											echo '<td>'. nl2br( $form['signups']) . '</td>';
-											echo '<td>'. nl2br( $form['uviews']) . '</td>';
+											echo '<td>'. nl2br( $form['signups']) . '-</td>';
+											echo '<td>'. nl2br( $form['uviews']) . '-</td>';
 											echo '<td><input type="checkbox" ' . $active . ' name="active" value="1"></td>';
 											echo '<td data-value="'. nl2br( $form['cdateunix']) . '">' . $form['creationdate'] . '</td>';
 											echo '</tr>';
 										}
 										// Create new Form button - ingen funktion ännu.
-										echo '<tr><td>';
+										echo '<tr><td colspan="4">';
 										echo '<a class="" href="newform.php?listid=' . nl2br($list['id']) . '"><i class="fa fa-plus-circle"></i> Add Form</a>';
 										echo '</td></tr>';
 										echo '</tbody>';
