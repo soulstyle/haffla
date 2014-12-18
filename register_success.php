@@ -17,7 +17,7 @@ include 'includes/template.php';
 			<div id="content">
 				<div class="row">
                     <div class="col-sm-4 col-sm-offset-4 text-center">
-						<p>back to <a href="index.php">login</a>.</p>
+						<p>Back to <a href="index.php">login</a>.</p>
 					</div>
 				</div>
 			</div>

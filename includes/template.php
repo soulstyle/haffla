@@ -1,7 +1,7 @@
 <?php
 function haffla_header($title = 'Haffla - Guestlist Management Tool') {
 	?>
-	<!-- Header -->
+	<!-- Header Template -->
 	<head>
 		<title><?php echo $title; ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -33,7 +33,7 @@ function haffla_footer() {
 	// 	$home_link = trailingslashit( $home_link ) . 'dashboard.php';
 	// }
 	?>
-	<!-- Footer -->
+	<!-- Footer Template -->
 	<footer id="footer">
 		<div class="container">
 			<div class="row">
@@ -51,7 +51,6 @@ function haffla_footer() {
 	<script src="js/footable.js?v=2-0-1" type="text/javascript"></script>
 	<script src="js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
 	<script src="js/footable.filter.js?v=2-0-1" type="text/javascript"></script>
-	<script src="js/footable.sort.js?v=2-0-1" type="text/javascript"></script>
 	<script src="js/script.js" type="text/javascript"></script>
 	<?php
 }

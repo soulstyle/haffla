@@ -128,6 +128,7 @@ img {
 table.footable {
   margin: 20px auto 0;
   overflow: hidden;
+  table-layout: fixed;
 }
 .footable thead {
 }
@@ -152,6 +153,7 @@ table.sub-table .footable-row-detail-row .footable-row-detail-value {
 }
 .sub-table-inner {
   background: transparent !important;
+  table-layout: fixed;
   width: 100%;
 }
 .sub-table-inner thead {

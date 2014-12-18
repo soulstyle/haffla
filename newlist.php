@@ -16,16 +16,38 @@ sec_session_start(); ?>
 				</header>
 				<div id="content">
 					<div class="row">
-						<div class="col-sm-4 col-sm-offset-4 text-center">
-							<!-- <p>Welcome back <?php echo htmlentities($_SESSION['username']); ?>!</p>  -->
-							<form role="form">
-								<div class="form-group">
-									<label for="listname">List name:</label>
-									<input class="form-control" type="text" name="listname" placeholder="Name your list">
-								</div>
-								<!-- Unknown field:<br> <input type="text" name="unknown"><br> -->
-								<button type="submit" class="btn btn-primary">Create List</button>
-							</form>
+						<div class="col-sm-6 col-sm-offset-3 text-center">
+							<?php 
+							$datum = getdate(date("U"));
+							$listdate = "$datum[mday]/$datum[mon] - $datum[year] - $datum[hours]:$datum[minutes]";
+							$owner = htmlentities($_SESSION['username']);
+							$ownerid = htmlentities($_SESSION['user_id']);
+							echo "<p>Owner : $owner | Owner ID: $ownerid | Datum: $listdate | Unix: $datum[0]</p>"; 
+							
+							if (isset($_POST['submitted'])) {
+								foreach($_POST AS $key => $value) {
+									$_POST[$key] = $mysqli2->real_escape_string($value);
+								} 
+								$sql = "INSERT INTO `lists` ( `listname` , `owner` , `owneruid` , `creationdate` , `cdateunix` ) VALUES ( '{$_POST['name']}' , ' " . $owner . "' , '" . $ownerid . "' ,  '" . $listdate . "', '" . $datum[0] . "' ) "; 
+								$mysqli2->query($sql) or die( mysqli_connect_errno() ); 
+
+								//Skriv ut vid lyckad ny skapad lista
+								echo "<h1>List Successfully created!</h1><br />";
+								echo "<br><br>";
+								echo "<a href='dashboard.php'>Back to the dashboard</a>";
+								//echo "<a href='viewlist.php'>Back To guestlist</a>";
+							}
+							if(!isset($_POST['submitted'])){
+								?>
+								<form role="form" method="POST">
+									<div class="form-group">
+										<label for="listname">List name:</label>
+										<input class="form-control" type="text" name="name" placeholder="Name your list">
+									</div>
+									<input type='hidden' value='1' name='submitted' />
+									<button type="submit" class="btn btn-primary">Create List</button>
+								</form>
+							<?php } ?>
 				 			<!-- <p>If you are done you can <a href="includes/logout.php">logout</a>.</p> -->
 				 		</div>
 				 	</div>

@@ -10,7 +10,7 @@ if (isset($_POST['email'], $_POST['p'])) {
  
     if (login($email, $password, $mysqli) == true) {
         // Lyckad inloggning.
-        header('Location: ../skyddadsida.php');
+        header('Location: ../dashboard.php');
     } else {
         // Misslyckad inloggning.
         header('Location: ../index.php?error=1');
