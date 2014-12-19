@@ -104,7 +104,7 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 											echo '<td><a target="_blank" href="viewform.php?listid='. nl2br( $form['listid']) . '&formid=' . $form['id'] . '">' . $form['formname'] . '</a> <i class="fa fa-external-link"></i></td>';
 											echo '<td>'. nl2br( $form['signups']) . '-</td>';
 											echo '<td>'. nl2br( $form['uviews']) . '-</td>';
-											echo '<td><input type="checkbox" ' . $active . ' name="active" value="1"></td>';
+											echo '<td><input class="form-active" type="checkbox" ' . $active . ' name="active" value="1" data-form-id="' . $form['id'] . '"></td>';
 											echo '<td data-value="'. nl2br( $form['cdateunix']) . '">' . $form['creationdate'] . '</td>';
 											echo '</tr>';
 										}

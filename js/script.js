@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
         footableSort.doSort(index, 'toggle');
     });
 
-    $(function () {
+    $(function() {
         $('.checkin-table').footable({
             addRowToggle: false
         }).bind('footable_filtering', function (e) {
@@ -40,6 +40,41 @@ jQuery(document).ready(function($) {
         });
     });
 
+    /* Activate - Deactivate Forms
+    ----------------------------------------------- */
+    function form_active(e) {
+        var form_id = $(e).data('form-id');
+        var active = '0';
+        if($(e).is(':checked')) {
+            active = '1';
+        }
+        var param = {'action': 'formactive', 'formId': form_id, 'active': active}; // Build param
+
+        //Do AJAX call
+        $.ajax({
+            url: '../includes/ajax.inc.php',
+            method: 'post',
+            data: param, 
+            success: function( data ){
+                if(data === '1') {
+                    // Form Active!
+                }
+                if(data === '0') {
+                    // Form Inactive
+                }
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                console.log(jqXhr);
+                console.log("Details: " + textStatus + "\nError:" + errorThrown);
+            }
+        });
+    }
+    // Bind CheckInOut till click på tabell rad.
+    $('.dashboard-table').on('change', '.form-active', function() {
+        form_active(this);
+    });
+
+
     /* CheckInOut function
     ----------------------------------------------- */
     function checkin_guest(e) {
@@ -55,7 +90,7 @@ jQuery(document).ready(function($) {
             url: '../includes/ajax.inc.php',
             method: 'post',
             data: param, 
-            success: function( data, textStatus, jQxhr ){
+            success: function( data ){
                 if(data === 'checkedin') {
                     $(e).toggleClass('checkedin');
                 }
