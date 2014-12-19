@@ -50,7 +50,7 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<table class="table table-striped table-hover footable toggle-circle-filled sub-table">
+							<table class="table table-striped table-hover dashboard-table toggle-circle-filled sub-table">
 								<thead>
 									<tr>
 										<th>List Name</th>

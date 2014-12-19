@@ -37,12 +37,12 @@ sec_session_start();
 								Search: <input id="filter" type="text"/>
 								<a href="#clear" class="clear-filter" title="clear filter">[clear]</a>
 							</p>
-							<table class="table checkin" data-filter="#filter" data-filter-text-only="true">
+							<table class="table checkin-table" data-filter="#filter" data-filter-text-only="true">
 								<thead>
 									<tr>
-										<th data-toggle="true">Name</th>
-										<th data-sort-ignore="true">Last Name</th>
-										<th data-sort-ignore="true" data-hide="phone,tablet">From form</th>
+										<th>Name</th>
+										<th>Last Name</th>
+										<th>From form</th>
 										<th data-type="numeric" data-hide="phone,tablet">Signup date</th>
 									</tr>
 								</thead>
@@ -95,44 +95,5 @@ sec_session_start();
 			<?php endif; ?>
 		</div>
 		<?php haffla_footer(); ?>
-		<script type="text/javascript">
-			$(function () {
-				$('table').footable().bind('footable_filtering', function (e) {
-					var selected = $('.filter-status').find(':selected').text();
-					if (selected && selected.length > 0) {
-						e.filter += (e.filter && e.filter.length > 0) ? ' ' + selected : selected;
-						e.clear = !e.filter;
-					}
-				});
-
-				$('.clear-filter').click(function (e) {
-					e.preventDefault();
-					$('.filter-status').val('');
-					$('table.demo').trigger('footable_clear_filter');
-				});
-
-				$('.filter-status').change(function (e) {
-					e.preventDefault();
-					$('table.demo').trigger('footable_filter', {filter: $('#filter').val()});
-				});
-			});
-		</script>
-		<script type="text/javascript">
-			$(function () {
-				$('table').footable();
-
-				$('.sort-column').click(function (e) {
-					e.preventDefault();
-
-					//get the footable sort object
-					var footableSort = $('table').data('footable-sort');
-
-					//get the index we are wanting to sort by
-					var index = $(this).data('index');
-
-					footableSort.doSort(index, 'toggle');
-				});
-			});
-		</script>
 	</body>
 </html>

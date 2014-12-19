@@ -125,12 +125,12 @@ img {
 
 /* Table Styles
 ----------------------------------------------- */
-table.footable {
+table.dashboard-table {
   margin: 20px auto 0;
   overflow: hidden;
   table-layout: fixed;
 }
-.footable thead {
+.dashboard-table thead {
 }
 
 table.sub-table .footable-row-detail {
@@ -168,12 +168,16 @@ table.sub-table-inner > tbody > tr > td {
   border: medium none;
   padding: 8px;
 }
+.checkin-table .footable-row-detail {
+  display: none !important;
+}
 
 /* Checked In */
 .checkedin {
   opacity: 0.15;
   text-decoration: line-through;
 }
-.checkin tbody tr {
+.checkin-table tbody tr {
   cursor: pointer;
 }
+
