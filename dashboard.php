@@ -31,7 +31,7 @@ while( $row = mysqli_fetch_array($result) ) { // skapar arrays av resultatet
 							<div class="row">
 								<div class="col-sm-4">
 									<?php
-									echo '<img class="img-circle img-thumbnail" src="/css/images/sakil.jpg"><br>';
+									echo '<img class="img-circle img-thumbnail" src="css/images/sakil.jpg"><br>';
 									?>
 								</div>
 								<div class="col-sm-8">
