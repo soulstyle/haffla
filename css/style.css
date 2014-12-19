@@ -168,3 +168,12 @@ table.sub-table-inner > tbody > tr > td {
   border: medium none;
   padding: 8px;
 }
+
+/* Checked In */
+.checkedin {
+  opacity: 0.15;
+  text-decoration: line-through;
+}
+.checkin tbody tr {
+  cursor: pointer;
+}
